@@ -1,6 +1,6 @@
 Name:		ngcp-rtpengine
 Version:	6.4.1.1
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	The Sipwise NGCP rtpengine
 
 Group:		System Environment/Daemons
@@ -14,7 +14,8 @@ Conflicts:	%{name}-kernel < %{version}-%{release}
 BuildRequires:	gcc make pkgconfig redhat-rpm-config
 BuildRequires:	glib2-devel libcurl-devel openssl-devel pcre-devel
 BuildRequires:	xmlrpc-c-devel zlib-devel hiredis-devel
-BuildRequires:	libpcap-devel libevent-devel json-glib-devel 
+BuildRequires:	libpcap-devel libevent-devel json-glib-devel
+BuildRequires:  bcg729-devel
 Requires(pre):	shadow-utils
 
 %if 0%{?with_transcoding} > 0
@@ -227,14 +228,17 @@ true
 %endif
 
 %changelog
+* Wed Oct 24 2018 Oleh Horbachov <gorbyo@gmail.com> - 6.4.1.1-2
+  - update to ngcp-rtpengine version 6.4.1.1
+  - enable bcg729
 * Tue Jul 10 2018 netaskd <netaskd@gmail.com> - 6.4.0.0-1
   - update to ngcp-rtpengine version 6.4.0.0
   - add packet recording
 * Thu Nov 24 2016 Marcel Weinberg <marcel@ng-voice.com>
-  - Updated to ngcp-rtpengine version 4.5.0 and CentOS 7.2 
+  - Updated to ngcp-rtpengine version 4.5.0 and CentOS 7.2
   - created a new variable "binname" to use rtpengine as name for the binaries
     (still using ngcp-rtpenginge as name of the package and daemon - aligned to the .deb packages)
-  - fixed dependencies 
+  - fixed dependencies
 * Mon Nov 11 2013 Peter Dunkley <peter.dunkley@crocodilertc.net>
   - Updated version to 2.3.2
   - Set license to GPLv3
@@ -245,4 +249,3 @@ true
   - Builds and installs userspace daemon (but no init.d scripts etc yet)
   - Builds and installs the iptables plugin
   - DKMS package for the kernel module
-
